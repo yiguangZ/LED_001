@@ -60,8 +60,8 @@ all: main-build
 main-build: stm32f4xx_drivers3.elf secondary-outputs
 
 # Tool invocations
-stm32f4xx_drivers3.elf stm32f4xx_drivers3.map: $(OBJS) $(USER_OBJS) C:\Users\yig88\STM32CubeIDE\workspace_1.18.1\stm32f4xx_drivers3\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "stm32f4xx_drivers3.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\yig88\STM32CubeIDE\workspace_1.18.1\stm32f4xx_drivers3\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32f4xx_drivers3.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+stm32f4xx_drivers3.elf stm32f4xx_drivers3.map: $(OBJS) $(USER_OBJS) C:\Users\yig88\git\LED_001\stm32f4xx_drivers3\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "stm32f4xx_drivers3.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\yig88\git\LED_001\stm32f4xx_drivers3\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32f4xx_drivers3.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
