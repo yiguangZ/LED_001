@@ -31,6 +31,7 @@ int main(void){
 	//IRQ config
 	GPIO_IRQITConfig(IRQ_NO_EXTI9_5, ENABLE);
 	GPIO_IRQPriorityConfig(IRQ_NO_EXTI9_5, NVIC_IRQ_PRIO15);
+	while(1);
 
 	return 0;
 }
