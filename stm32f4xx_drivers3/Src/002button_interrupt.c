@@ -8,7 +8,7 @@
 #include "stm32f407xx_gpio.h"
 #include<string.h>
 void delay(void){
-	for(uint32_t i = 0; i<500000; i++);
+	for(uint32_t i = 0; i<500000/2; i++);
 }
 
 int main(void){
@@ -41,6 +41,7 @@ int main(void){
 }
 
 void EXTI9_5_IRQHandler(void){
+	delay();//200ms
 	GPIO_IRQHandling(GPIO_PIN_No_5);
 	GPIO_ToggleOutputPin(GPIOD, GPIO_PIN_No_12);
 }
