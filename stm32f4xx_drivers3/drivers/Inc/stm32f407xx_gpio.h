@@ -85,8 +85,8 @@ uint16_t GPIO_ReadFromInputPort(GPIO_RegDef_t *pGPIOx);
 void GPIO_WriteToOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNum, uint8_t val);
 void GPIO_WriteToOutputPort(GPIO_RegDef_t *pGPIOx, uint16_t val);
 void GPIO_ToggleOutputPin(GPIO_RegDef_t *pGPIOx, uint8_t PinNum);
-void GPIO_IRQConfig(uint8_t IRQNum, uint8_t IRQPrio, uint8_t EnorDi);
+void GPIO_IRQITConfig(uint8_t IRQNum, uint8_t EnorDi);
 void GPIO_IRQHandling(uint8_t PinNum);
-
+void GPIO_IRQPriorityConfig(uint8_t IRQNum, uint8_t IRQPriority);
 
 #endif /* INC_STM32F407XX_GPIO_H_ */
