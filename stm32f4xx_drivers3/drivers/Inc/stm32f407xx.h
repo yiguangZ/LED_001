@@ -152,6 +152,18 @@ typedef struct{
 
 
 }SYSCFG_RegDef_t;
+
+typedef struct{
+	__vo uint32_t CR1;
+	__vo uint32_t CR2;
+	__vo uint32_t SR;
+	__vo uint32_t DR;
+	__vo uint32_t CRCPR;
+	__vo uint32_t RXCRCR;
+	__vo uint32_t TXCRCR;
+	__vo uint32_t I2SCFGR;
+	__vo uint32_t I2SPR;
+}SPI_RegDef_t;
 /*
  * peripheral definition (Peripheral base addresses typecasted to xxx_RegDef_t)
  */
@@ -169,6 +181,10 @@ typedef struct{
 
 #define EXTI	((EXTI_RegDef_t*)EXTI_BASEADDR)
 #define SYSCFG  ((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
+
+#define SPI1     ((SPI_RegDef_t*)SPI1_BASEADDR)
+#define SPI2     ((SPI_RegDef_t*)SPI2_BASEADDR)
+#define SPI3     ((SPI_RegDef_t*)SPI3_BASEADDR)
 
 /*
  * Clock enable macros for GPIOx
@@ -263,6 +279,13 @@ typedef struct{
 #define GPIOH_REG_RESET()   do{ (RCC->AHB1RSTR |= (1<<7)); (RCC->AHB1RSTR &= ~(1<<7)); }while(0)
 #define GPIOI_REG_RESET()   do{ (RCC->AHB1RSTR |= (1<<8)); (RCC->AHB1RSTR &= ~(1<<8)); }while(0)
 
+/*
+ * Macros to reset SPI
+ */
+#define SPI1_REG_RESET()   do{ (RCC->APB2RSTR |= (1<<12)); (RCC->APB2RSTR &= ~(1<<12)); }while(0)
+#define SPI2_REG_RESET()   do{ (RCC->APB1RSTR |= (1<<14)); (RCC->APB1RSTR &= ~(1<<14)); }while(0)
+#define SPI3_REG_RESET()   do{ (RCC->APB1RSTR |= (1<<15)); (RCC->APB1RSTR &= ~(1<<15)); }while(0)
+
 #define GPIO_BASEADDR_TO_CODE(x)  ( (x == GPIOA)?0: \
 									(x == GPIOB)?1: \
 									(x == GPIOC)?2: \
@@ -278,6 +301,8 @@ typedef struct{
 #define RESET 			DISABLE
 #define GPIO_PIN_SET 	SET
 #define GPIO_PIN_RESET 	RESET
+#define FLAG_RESET		RESET
+#define FLAG_SET		SET
 
 #define IRQ_NO_EXTI0	6
 #define IRQ_NO_EXTI1	7
@@ -303,6 +328,33 @@ typedef struct{
 #define NVIC_IRQ_PRIO13 13
 #define NVIC_IRQ_PRIO14 14
 #define NVIC_IRQ_PRIO15 15
+/*
+ * Bit position of SPI
+ */
+#define SPI_CR1_CPHA		0
+#define SPI_CR1_CPOL		1
+#define SPI_CR1_MSTR		2
+#define SPI_CR1_BR			3
+#define SPI_CR1_SPE			6
+#define SPI_CR1_LSBFIRST	7
+#define SPI_CR1_SSI			8
+#define SPI_CR1_SSM			9
+#define SPI_CR1_RXONLY		10
+#define SPI_CR1_DFF			11
+#define SPI_CR1_CRCNEXT		12
+#define SPI_CR1_CRCEN		13
+#define SPI_CR1_BIDIOE		14
+#define SPI_CR1_BIDIMODE	15
+
+
+
+
+
+
+
+
+
+
 
 
 
