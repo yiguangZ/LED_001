@@ -105,4 +105,5 @@ void SPI_IRQPriorityConfig(uint8_t IRQNum, uint32_t IRQPriority);
 void SPI_PeripheralControl(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 void SPI_SSIConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 void SPI_SSOEConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
+uint8_t SPI_GetFlagStatus(SPI_RegDef_t *pSPIx , uint32_t FlagName);
 
