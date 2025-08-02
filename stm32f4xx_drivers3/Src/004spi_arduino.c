@@ -52,7 +52,7 @@ void GPIO_ButtonInit(void){
 	GPIO_Init(&GPIOButton);
 }
 void delay(void){
-	for(uint32_t i = 0; i<500000/2; i++);
+	for(uint32_t i = 0; i<500000; i++);
 }
 int main(void){
 	char user_data[] = "Hello world";
