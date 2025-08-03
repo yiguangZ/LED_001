@@ -68,7 +68,7 @@ typedef struct{
 /*
  * SPI Flag
  */
-#define SPI_TXE_FLAG		(1<< 1)
+#define SPI_TXE_FLAG		(1<<1)
 #define SPI_RXNE_FLAG		(1<<0)
 #define SPI_BSY_FLAG		(1<<7)
 

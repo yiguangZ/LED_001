@@ -1006,12 +1006,12 @@ LOAD C:/ST/STM32CubeIDE_1.18.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_line    0x00000767      0x9f7 ./drivers/Src/stm32f407xx_gpio.o
  .debug_line    0x0000115e      0x69d ./drivers/Src/stm32f407xx_spi.o
 
-.debug_str      0x00000000     0x9351
- .debug_str     0x00000000     0x9351 ./Src/004spi_arduino.o
-                               0x91ea (size before relaxing)
- .debug_str     0x00009351       0x73 ./Startup/startup_stm32f407vgtx.o
- .debug_str     0x00009351     0x5bb5 ./drivers/Src/stm32f407xx_gpio.o
- .debug_str     0x00009351     0x5a9c ./drivers/Src/stm32f407xx_spi.o
+.debug_str      0x00000000     0x9350
+ .debug_str     0x00000000     0x9350 ./Src/004spi_arduino.o
+                               0x91e9 (size before relaxing)
+ .debug_str     0x00009350       0x73 ./Startup/startup_stm32f407vgtx.o
+ .debug_str     0x00009350     0x5bb5 ./drivers/Src/stm32f407xx_gpio.o
+ .debug_str     0x00009350     0x5a9b ./drivers/Src/stm32f407xx_spi.o
 
 .comment        0x00000000       0x43
  .comment       0x00000000       0x43 ./Src/004spi_arduino.o

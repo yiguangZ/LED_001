@@ -66,6 +66,8 @@ int main(void){
 		delay();
 		SPI_PeripheralControl(SPI2, ENABLE);
 		//first send length
+		uint8_t dataLen = strlen(user_data);
+		SPI_SendData(SPI2, &dataLen, 1);
 		SPI_SendData(SPI2, (uint8_t*)user_data, strlen(user_data));
 		//have to check if SPI is busy
 		while(SPI_GetFlagStatus(SPI2, SPI_BSY_FLAG));
