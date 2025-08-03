@@ -277,7 +277,7 @@ int main(void){
  80002de:	481b      	ldr	r0, [pc, #108]	@ (800034c <main+0x8c>)
  80002e0:	f000 fc11 	bl	8000b06 <SPI_SSOEConfig>
 	while(1){
-		while( ! GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_No_0));
+		while( ! (GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_No_0)));
  80002e4:	bf00      	nop
  80002e6:	2100      	movs	r1, #0
  80002e8:	4819      	ldr	r0, [pc, #100]	@ (8000350 <main+0x90>)
