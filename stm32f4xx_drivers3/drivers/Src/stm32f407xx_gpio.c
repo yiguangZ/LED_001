@@ -44,7 +44,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
 		uint8_t temp2 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber % 4;
 		uint8_t portcode = GPIO_BASEADDR_TO_CODE(pGPIOHandle->pGPIOx);
 		SYSCFG_PCLK_EN();
-		SYSCFG->EXTICR[temp1] |= portcode<<(temp2*4);
+		SYSCFG->EXTICR[temp1] = portcode<<(temp2*4);
 		//enable interrupt delievery in IMR
 		EXTI->IMR |= (1<< pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
 	}
@@ -62,7 +62,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
 	temp = 0;
 		//4 configure the output type
 	temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType << (pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
-	pGPIOHandle->pGPIOx->OSPEEDR &= ~(0x3<<(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
+	pGPIOHandle->pGPIOx->OTYPER &= ~(0x1<<(pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
 	pGPIOHandle->pGPIOx->OTYPER |= temp;
 		//5 configure the alternate functionality
 	if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_ALTFN){
