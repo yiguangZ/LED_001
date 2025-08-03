@@ -62,6 +62,8 @@ int main(void){
 	//enable SPI2 peripheral
 	SPI_SSOEConfig(SPI2, ENABLE);
 	while(1){
+		while( ! GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_No_0) );
+		delay();
 		SPI_PeripheralControl(SPI2, ENABLE);
 		//first send length
 		uint8_t dataLen = strlen(user_data);
