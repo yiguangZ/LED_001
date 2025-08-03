@@ -127,7 +127,7 @@ void SPI_SendData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t Len){
 			Len--;
 			(uint16_t*)pTxBuffer++;
 		}
-		else if(!(pSPIx->CR1 & (1<<SPI_CR1_DFF))){
+		else {
 			pSPIx->DR = *pTxBuffer;
 			Len--;
 			pTxBuffer++;
