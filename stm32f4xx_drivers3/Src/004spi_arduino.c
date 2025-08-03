@@ -35,7 +35,7 @@ void SPI2_Init(void){
 	SPI2handle.pSPIx = SPI2;
 	SPI2handle.SPIConfig.SPI_BusConfig = SPI_BUS_CONFIG_FD;
 	SPI2handle.SPIConfig.SPI_DeviceMode = SPI_DEVICE_MODE_MASTER;
-	SPI2handle.SPIConfig.SPI_SclkSpeed = SPI_SCLK_SPEED_DIV8;
+	SPI2handle.SPIConfig.SPI_SclkSpeed = SPI_SCLK_SPEED_DIV32;
 	SPI2handle.SPIConfig.SPI_DFF = SPI_DFF_8BITS;
 	SPI2handle.SPIConfig.SPI_CPOL = SPI_CPOL_LOW;
 	SPI2handle.SPIConfig.SPI_CPHA = SPI_CPHA_LOW;
@@ -62,7 +62,7 @@ int main(void){
 	//enable SPI2 peripheral
 	SPI_SSOEConfig(SPI2, ENABLE);
 	while(1){
-		while(!GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_No_0));
+		while( ! GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_NO_0) );
 		delay();
 		SPI_PeripheralControl(SPI2, ENABLE);
 		//first send length
