@@ -76,7 +76,7 @@ void delay(void){
 	for(uint32_t i = 0; i<500000/2; i++);
 }
 uint8_t SPI_verifyresponse(uint8_t ackbyte){
-	if (ackbyte == 0xF5){
+	if (ackbyte == (uint8_t)0xF5){
 		//ack
 		return 1;
 	}
@@ -112,6 +112,7 @@ int main(void){
 			args[0] = LED_PIN;
 			args[1] = LED_ON;
 			SPI_SendData(SPI2, args, 2);
+			SPI_ReceiveData(SPI2,args,2);
 		}
 		/*///Command sensor read
 		while( ! GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_No_0) );
