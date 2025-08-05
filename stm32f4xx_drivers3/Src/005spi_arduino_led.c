@@ -112,7 +112,6 @@ int main(void){
 			args[0] = LED_PIN;
 			args[1] = LED_ON;
 			SPI_SendData(SPI2, args, 2);
-			SPI_ReceiveData(SPI2,args,2);
 		}
 		/*///Command sensor read
 		while( ! GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_No_0) );
