@@ -35,7 +35,7 @@ void SPI2_GPIOInit(void){
 	SPIPins.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_ALTFN;
 	SPIPins.GPIO_PinConfig.GPIO_PinAltFunMode = 5;
 	SPIPins.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
-	SPIPins.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PU;
+	SPIPins.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 	SPIPins.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
 	//SCLK
 	SPIPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_No_13;
@@ -48,6 +48,7 @@ void SPI2_GPIOInit(void){
 	GPIO_Init(&SPIPins);
 	//NSS
 	SPIPins.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_No_12;
+	SPIPins.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PU;
 	GPIO_Init(&SPIPins);
 
 }
@@ -56,7 +57,7 @@ void SPI2_Init(void){
 	SPI2handle.pSPIx = SPI2;
 	SPI2handle.SPIConfig.SPI_BusConfig = SPI_BUS_CONFIG_FD;
 	SPI2handle.SPIConfig.SPI_DeviceMode = SPI_DEVICE_MODE_MASTER;
-	SPI2handle.SPIConfig.SPI_SclkSpeed = SPI_SCLK_SPEED_DIV32;
+	SPI2handle.SPIConfig.SPI_SclkSpeed = SPI_SCLK_SPEED_DIV8;
 	SPI2handle.SPIConfig.SPI_DFF = SPI_DFF_8BITS;
 	SPI2handle.SPIConfig.SPI_CPOL = SPI_CPOL_LOW;
 	SPI2handle.SPIConfig.SPI_CPHA = SPI_CPHA_LOW;
@@ -119,7 +120,7 @@ int main(void){
 		commandcode = COMMAND_SENSOR_READ;
 		SPI_SendData(SPI2, &commandcode, 1);
 		SPI_ReceiveData(SPI2, &dummy_read, 1);
-		/send some dummy bits (1byte) to fetch response from slave
+		//send some dummy bits (1byte) to fetch response from slave
 		SPI_SendData(SPI2, &dummy_write, 1);
 		SPI_ReceiveData(SPI2, &ackbyte, 1);
 		if(SPI_verifyresponse(ackbyte)){
@@ -128,6 +129,7 @@ int main(void){
 			SPI_SendData(SPI2, args, 1);
 		}
 		SPI_ReceiveData(SPI2, &dummy_read, 1);
+		delay();
 		SPI_SendData(SPI2, &dummy_write, 1);
 		uint8_t analog_read;
 		SPI_ReceiveData(SPI2, &analog_read, 1);
