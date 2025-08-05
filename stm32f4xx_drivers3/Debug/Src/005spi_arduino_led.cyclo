@@ -3,4 +3,4 @@
 ../Src/005spi_arduino_led.c:67:6:GPIO_ButtonInit	1
 ../Src/005spi_arduino_led.c:76:6:delay	2
 ../Src/005spi_arduino_led.c:79:9:SPI_verifyresponse	2
-../Src/005spi_arduino_led.c:89:5:main	6
+../Src/005spi_arduino_led.c:89:5:main	4
