@@ -133,6 +133,13 @@ void SPI_SendData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t Len){
 			pTxBuffer++;
 		}
 	}
+	//CLEARS overrun
+	if (pSPIx->SR & (1<<6)) {
+	    volatile uint32_t temp;
+	    temp = pSPIx->DR;
+	    temp = pSPIx->SR;
+	    (void)temp;
+	}
 }
 /**
 	* @brief  Receive data from rx buffer
