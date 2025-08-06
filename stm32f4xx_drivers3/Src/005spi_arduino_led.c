@@ -113,7 +113,7 @@ int main(void){
 			args[1] = LED_ON;
 			SPI_SendData(SPI2, args, 2);
 		}
-		/*///Command sensor read
+		//Command sensor read
 		while( ! GPIO_ReadFromInputPin(GPIOA,GPIO_PIN_No_0) );
 		delay();
 		commandcode = COMMAND_SENSOR_READ;
@@ -132,7 +132,6 @@ int main(void){
 		SPI_SendData(SPI2, &dummy_write, 1);
 		uint8_t analog_read;
 		SPI_ReceiveData(SPI2, &analog_read, 1);
-		*/
 		//have to check if SPI is busy
 		while(SPI_GetFlagStatus(SPI2, SPI_BSY_FLAG));
 		//disbale
