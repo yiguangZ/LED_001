@@ -127,6 +127,9 @@ int main(void)
 		uint8_t commandcode = COMMAND_LED_CTRL;
 		uint8_t ackbyte;
 		uint8_t args[2];
+		uint8_t analog_read;
+		uint8_t led_status;
+
 
 		//send command
 		SPI_SendData(SPI2,&commandcode,1);
@@ -195,7 +198,6 @@ int main(void)
 			//Send some dummy bits (1 byte) fetch the response from the slave
 			SPI_SendData(SPI2,&dummy_write,1);
 
-			uint8_t analog_read;
 			SPI_ReceiveData(SPI2,&analog_read,1);
 		}
 
@@ -237,7 +239,6 @@ int main(void)
 			//Send some dummy bits (1 byte) fetch the response from the slave
 			SPI_SendData(SPI2,&dummy_write,1);
 
-			uint8_t led_status;
 			SPI_ReceiveData(SPI2,&led_status,1);
 
 		}
