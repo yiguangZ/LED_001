@@ -7,10 +7,8 @@
 #include "stm32f407xx.h"
 #include "stm32f407xx_gpio.h"
 #include "stm32f407xx_spi_driver.h"
-#include<stdio.h>
 #include<string.h>
 
-extern void initialise_monitor_handles();
 
 
 #define COMMAND_LED_CTRL	0x50
@@ -90,14 +88,11 @@ uint8_t SPI_verifyresponse(uint8_t ackbyte){
 }
 
 int main(void){
-	initialise_monitor_handles();
 	uint8_t dummy_write = 0xff;
 	uint8_t dummy_read;
-	printf("Application is running\n");
 	GPIO_ButtonInit();
 	SPI2_GPIOInit();
 	SPI2_Init();
-	printf("SPI2 Init done\n");
 	//enable SPI2 peripheral
 	SPI_SSOEConfig(SPI2, ENABLE);
 	while(1){
@@ -120,7 +115,6 @@ int main(void){
 			args[1] = LED_ON;
 			SPI_SendData(SPI2, args, 2);
 			SPI_ReceiveData(SPI2, args, 2);
-			printf("COMMAND_LED_CTRL executed\n");
 
 		}
 		//Command sensor read
@@ -141,7 +135,6 @@ int main(void){
 			SPI_SendData(SPI2, &dummy_write, 1);
 			uint8_t analog_read;
 			SPI_ReceiveData(SPI2, &analog_read, 1);
-			printf("CMD_SENSOR_READ %d\n", analog_read);
 
 		}
 		//COMMAND_LED_READ
@@ -162,7 +155,6 @@ int main(void){
 			SPI_SendData(SPI2, &dummy_write, 1);
 			uint8_t led_status;
 			SPI_ReceiveData(SPI2, &led_status, 1);
-			printf("CMD_LED_READ %d\n", led_status);
 
 		}
 		//COMMAND_PRINT
@@ -181,7 +173,6 @@ int main(void){
 			args[0] = strlen((char*)message);
 			SPI_SendData(SPI2, args, 1);
 			SPI_SendData(SPI2, message, args[0]);
-			printf("CMD_PRINT done\n");
 
 		}
 		//COMMAND_ID_READ
@@ -204,13 +195,11 @@ int main(void){
 				SPI_ReceiveData(SPI2, &id[i], 1);
 			}
 			id[11] = '\0';
-			printf("COMMAND_ID: %s \n", id);
 		}
 		//have to check if SPI is busy
 		while(SPI_GetFlagStatus(SPI2, SPI_BSY_FLAG));
 		//disbale
 		SPI_PeripheralControl(SPI2, DISABLE);
-		printf("SPI Communication closed");
 	}
 	return 0;
 }
