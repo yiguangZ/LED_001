@@ -284,7 +284,7 @@ uint8_t SPI_ReceiveDataIT(SPI_Handle_t *pSPIHandle, uint8_t *pRxBuffer, uint32_t
 
 		//1. save the Tx buffer addr and Len info in global variable
 		pSPIHandle->pRxBuffer = pRxBuffer;
-		pSPIHandle->TxLen = Len;
+		pSPIHandle->RxLen = Len;
 		//2. mark SPI state as busy so no other code can take over same SPI peripheral
 		pSPIHandle->RxState = SPI_BUSY_IN_RX;
 
@@ -316,9 +316,9 @@ void spi_txe_interrupt_handle(SPI_Handle_t *pSPIHandle){
 void spi_rxne_interrupt_handle(SPI_Handle_t *pSPIHandle){
 	if(pSPIHandle->pSPIx->CR1 & (1<<SPI_CR1_DFF)){
 		*((uint16_t*)pSPIHandle->pRxBuffer) = (uint16_t) pSPIHandle->pSPIx->DR;
-		pSPIHandle->RxLen--;
-		pSPIHandle->RxLen--;
-		(uint16_t*)pSPIHandle->pRxBuffer++;
+		pSPIHandle->RxLen-= 2;
+		pSPIHandle->pRxBuffer++;
+		pSPIHandle->pRxBuffer++;
 	}
 	else {
 		*(pSPIHandle->pRxBuffer) = (uint8_t)pSPIHandle->pSPIx->DR;

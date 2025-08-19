@@ -103,7 +103,7 @@ void Slave_GPIO_InterruptPinInit(void)
 	spiIntPin.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_No_6;
 	spiIntPin.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IT_FT;
 	spiIntPin.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_LOW;
-	spiIntPin.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PU;
+	spiIntPin.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
 
 	GPIO_Init(&spiIntPin);
 
