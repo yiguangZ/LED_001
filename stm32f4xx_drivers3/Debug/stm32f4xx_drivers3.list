@@ -296,8 +296,8 @@ void Slave_GPIO_InterruptPinInit(void)
 	spiIntPin.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_LOW;
  8000332:	2300      	movs	r3, #0
  8000334:	72bb      	strb	r3, [r7, #10]
-	spiIntPin.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PU;
- 8000336:	2301      	movs	r3, #1
+	spiIntPin.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+ 8000336:	2300      	movs	r3, #0
  8000338:	72fb      	strb	r3, [r7, #11]
 
 	GPIO_Init(&spiIntPin);
@@ -2553,10 +2553,10 @@ uint8_t SPI_ReceiveDataIT(SPI_Handle_t *pSPIHandle, uint8_t *pRxBuffer, uint32_t
  80010e0:	68fb      	ldr	r3, [r7, #12]
  80010e2:	68ba      	ldr	r2, [r7, #8]
  80010e4:	611a      	str	r2, [r3, #16]
-		pSPIHandle->TxLen = Len;
+		pSPIHandle->RxLen = Len;
  80010e6:	68fb      	ldr	r3, [r7, #12]
  80010e8:	687a      	ldr	r2, [r7, #4]
- 80010ea:	615a      	str	r2, [r3, #20]
+ 80010ea:	619a      	str	r2, [r3, #24]
 		//2. mark SPI state as busy so no other code can take over same SPI peripheral
 		pSPIHandle->RxState = SPI_BUSY_IN_RX;
  80010ec:	68fb      	ldr	r3, [r7, #12]
@@ -2686,19 +2686,19 @@ void spi_rxne_interrupt_handle(SPI_Handle_t *pSPIHandle){
  80011ac:	691b      	ldr	r3, [r3, #16]
  80011ae:	b292      	uxth	r2, r2
  80011b0:	801a      	strh	r2, [r3, #0]
-		pSPIHandle->RxLen--;
+		pSPIHandle->RxLen-= 2;
  80011b2:	687b      	ldr	r3, [r7, #4]
  80011b4:	699b      	ldr	r3, [r3, #24]
- 80011b6:	1e5a      	subs	r2, r3, #1
+ 80011b6:	1e9a      	subs	r2, r3, #2
  80011b8:	687b      	ldr	r3, [r7, #4]
  80011ba:	619a      	str	r2, [r3, #24]
-		pSPIHandle->RxLen--;
+		pSPIHandle->pRxBuffer++;
  80011bc:	687b      	ldr	r3, [r7, #4]
- 80011be:	699b      	ldr	r3, [r3, #24]
- 80011c0:	1e5a      	subs	r2, r3, #1
+ 80011be:	691b      	ldr	r3, [r3, #16]
+ 80011c0:	1c5a      	adds	r2, r3, #1
  80011c2:	687b      	ldr	r3, [r7, #4]
- 80011c4:	619a      	str	r2, [r3, #24]
-		(uint16_t*)pSPIHandle->pRxBuffer++;
+ 80011c4:	611a      	str	r2, [r3, #16]
+		pSPIHandle->pRxBuffer++;
  80011c6:	687b      	ldr	r3, [r7, #4]
  80011c8:	691b      	ldr	r3, [r3, #16]
  80011ca:	1c5a      	adds	r2, r3, #1
