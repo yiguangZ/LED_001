@@ -9,6 +9,7 @@
 #define INC_STM32F407XX_H_
 
 #include <stdint.h>
+#include <stddef.h>
 #define __vo volatile
 /*
  * ARM Cortex Mx Processor NVIC reg addr
@@ -303,7 +304,7 @@ typedef struct{
 #define GPIO_PIN_RESET 	RESET
 #define FLAG_RESET		RESET
 #define FLAG_SET		SET
-
+//IRQ numbers definition for GPIO
 #define IRQ_NO_EXTI0	6
 #define IRQ_NO_EXTI1	7
 #define IRQ_NO_EXTI2	8
@@ -311,6 +312,10 @@ typedef struct{
 #define IRQ_NO_EXTI4	10
 #define IRQ_NO_EXTI9_5	23
 #define IRQ_NO_EXTI15_10	40
+//IRQ numbers definition for SPI
+#define SPI1_IRQ		35
+#define SPI2_IRQ		36
+#define SPI3_IRQ		51
 
 #define NVIC_IRQ_PRIO0   0
 #define NVIC_IRQ_PRIO1   1
